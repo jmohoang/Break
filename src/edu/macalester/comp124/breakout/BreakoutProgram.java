@@ -8,5 +8,8 @@ import acm.program.GraphicsProgram;
  *
  */
 public class BreakoutProgram extends GraphicsProgram {
+    public void run() {
+
+    }
 
 }
