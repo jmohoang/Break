@@ -3,15 +3,17 @@ package edu.macalester.comp124.breakout;
 import acm.graphics.GCompound;
 import acm.graphics.GRect;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 
 /**
  * Created by John on 20-Oct-14.
  */
-public class Paddle extends GCompound{
+public class Paddle extends GCompound {
     GRect paddle;
-    public Paddle(){
-        paddle = new GRect(500,400, 60, 20);
-        paddle.setFilled (true);
+
+    public Paddle() {
+        paddle = new GRect(0, 400, 60, 10);
+        paddle.setFilled(true);
         paddle.setColor(Color.BLUE);
         add(paddle);
     }
