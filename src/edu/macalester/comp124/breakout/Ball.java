@@ -7,6 +7,7 @@ import java.awt.*;
 
 /**
  * Created by John on 20-Oct-14.
+ * Creates a GCompound that encompasses the ball object
  */
 public class Ball extends GCompound{
     public static final double BALL_DIAMETER = 7;
