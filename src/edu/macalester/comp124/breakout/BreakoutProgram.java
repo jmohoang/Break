@@ -116,9 +116,11 @@ public class BreakoutProgram extends GraphicsProgram {
     }
 
     /**
-     * This method is used to make the bricks disappear when the are hit by the bal.
+     * This method is used to make the bricks disappear when the are hit by the ball.
      * All the four corners of the ball square are defined
      * as well each of the sides of a brick that each corner of the ball square is likely to come in contact with
+     * such that the ball bounces appropriately when it hits a brick on the sides
+     * as compared to either the top or bottom
      */
     public void deleteBricks (){
         double x = ball1.getX();
