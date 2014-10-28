@@ -12,7 +12,7 @@ public class Paddle extends GCompound {
     GRect paddle;
 
     public Paddle() {
-        paddle = new GRect(0, 400, 60, 10);
+        paddle = new GRect(0, 0, 60, 3);
         paddle.setFilled(true);
         paddle.setColor(Color.BLUE);
         add(paddle);
