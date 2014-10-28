@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * Created by John on 20-Oct-14.
+ * Creates a GCompound that encompasses the GRect that is used as the paddle
  */
 public class Paddle extends GCompound {
     GRect paddle;
