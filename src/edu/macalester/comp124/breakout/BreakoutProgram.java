@@ -83,8 +83,8 @@ public class BreakoutProgram extends GraphicsProgram {
      * @param obj
      */
     public void moveBall (GCompound obj){
-        dX = rgen.nextDouble(-2, 2);
-        dY = rgen.nextDouble(0.1, 2);
+        dX = 2; //rgen.nextDouble(-2, 2);
+        dY = 2; //rgen.nextDouble(0.1, 2);
 
         while (playOn){
             obj.move(dX, dY);
@@ -101,18 +101,33 @@ public class BreakoutProgram extends GraphicsProgram {
                 if (tries>= 3){playOn = false;}
             }
             if (totalBrickNum <= 0){playOn = false;}
-            //bouncing over the paddle
-            //I defined all four corners of the ball square which may hit the paddle
-            if (getElementAt(obj.getX(), obj.getY()) == paddle1 ||
-            getElementAt(obj.getX()+Ball.BALL_DIAMETER, obj.getY()) == paddle1 ||
-            getElementAt(obj.getX(), obj.getY()+Ball.BALL_DIAMETER) == paddle1 ||
-            getElementAt(obj.getX()+Ball.BALL_DIAMETER, obj.getY()+Ball.BALL_DIAMETER) == paddle1)
-            {dY = -dY;}
+
+            bounceOverPaddle(obj);
+
+//            if (getElementAt(obj.getX(), obj.getY()) == paddle1 ||
+//            getElementAt(obj.getX()+Ball.BALL_DIAMETER, obj.getY()) == paddle1 ||
+//            getElementAt(obj.getX(), obj.getY()+Ball.BALL_DIAMETER) == paddle1 ||
+//            getElementAt(obj.getX()+Ball.BALL_DIAMETER, obj.getY()+Ball.BALL_DIAMETER) == paddle1)
+//            {dY = -dY;}
+
             //deleting the bricks
             deleteBricks();
             previousX = ball1.getX();
             previousY = ball1.getY();
         }
+    }
+
+    /**
+     * Takes in the ball object and defines bouncing over the paddle
+     * I defined all four corners of the ball square which may hit the paddle
+     * @param obj
+     */
+    public void bounceOverPaddle (GCompound obj){
+        if (getElementAt(obj.getX(), obj.getY()) == paddle1) {dX = -dX;}
+        if  (getElementAt(obj.getX()+Ball.BALL_DIAMETER, obj.getY()) == paddle1) {dX = -dX;}
+        if (getElementAt(obj.getX(), obj.getY()+Ball.BALL_DIAMETER) == paddle1 &&
+                getElementAt(obj.getX()+Ball.BALL_DIAMETER, obj.getY()+Ball.BALL_DIAMETER) != paddle1) {dY = -dY;}
+        if (getElementAt(obj.getX()+Ball.BALL_DIAMETER, obj.getY()+Ball.BALL_DIAMETER) == paddle1) {dY = -dY;} //Gets preference
     }
 
     /**
@@ -141,7 +156,8 @@ public class BreakoutProgram extends GraphicsProgram {
         }
         //Bottom right corner
         if (ball1.getElementAt(xb,yb) != paddle1 &&
-                wall1.contains(xb,yb)){
+                wall1.contains(xb,yb) &&
+                !wall1.contains(x,y)){  //makes sure that Top left corner has more preference over this one
             if (previousY <= wall1.getElementAt(xb,yb).getY() &&
                     wall1.getElementAt(xb,yb).getY() <= yb) {dY = -dY;}
             if (previousX <= wall1.getElementAt(xb,yb).getX() &&
@@ -151,8 +167,12 @@ public class BreakoutProgram extends GraphicsProgram {
         }
 
         //Top right corner
+        //This corner has to hit the brick by itself otherwise it won't be given preference
         if (ball1.getElementAt(xb,y) != paddle1 &&
-                wall1.contains(xb,y)){
+                wall1.contains(xb,y) &&
+                !wall1.contains(x,y) &&
+                !wall1.contains(x, yb) &&
+                !wall1.contains(xb, yb)){
             if (previousY >= wall1.getElementAt(xb,y).getY()+20 &&
                     wall1.getElementAt(xb,y).getY()+20 >= y){dY = -dY;}
             if (previousX <= wall1.getElementAt(xb,y).getX() &&
@@ -162,8 +182,12 @@ public class BreakoutProgram extends GraphicsProgram {
         }
 
         //Bottom left corner
+        //This corner has to hit the brick by itself otherwise it won't be given preference
         if (ball1.getElementAt(x,yb) != paddle1 &&
-                wall1.contains(x,yb)){
+                wall1.contains(x,yb) &&
+                !wall1.contains(x,y) &&
+                !wall1.contains(xb, y) &&
+                !wall1.contains(xb,yb)){
             if (previousY <= wall1.getElementAt(x,yb).getY() &&
                     wall1.getElementAt(x,yb).getY() <= yb) {dY = -dY;}
             if (previousX >= wall1.getElementAt(x,yb).getX()+60 &&
