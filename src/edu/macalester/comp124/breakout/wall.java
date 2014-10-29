@@ -9,14 +9,14 @@ import java.util.ArrayList;
  * Uses ArrayLists to store the total number of bricks requires of the same color
  * Iterates over all the ArrayLists and makes a GCompound with all the bricks for the wall.
  */
-public class Wall1 extends GCompound {
+public class Wall extends GCompound {
     private ArrayList<Brick> redRow;
     private ArrayList<Brick> orangeRow;
     private ArrayList<Brick> yellowRow;
     private ArrayList<Brick> cyanRow;
     private ArrayList<Brick> greenRow;
 
-    public Wall1() {
+    public Wall() {
         redRow = new ArrayList<Brick>();
         orangeRow = new ArrayList<Brick>();
         yellowRow = new ArrayList<Brick>();
