@@ -143,28 +143,6 @@ public class BreakoutProgram extends GraphicsProgram {
         double xb = ball1.getX() + Ball.BALL_DIAMETER;
         double yb = ball1.getY() + Ball.BALL_DIAMETER;  //coordinates at the bottom right corner of the ball
 
-        //Top left corner of the ball.
-        if (ball1.getElementAt(x,y) != paddle1 &&
-        wall1.contains(x,y)){
-            if (previousY >= wall1.getElementAt(x,y).getY()+20 &&
-                    wall1.getElementAt(x,y).getY()+20 >= y){dY = -dY;}
-            if (previousX >= wall1.getElementAt(x,y).getX()+60 &&
-                    wall1.getElementAt(x,y).getX()+60 >= x) {dX = -dX;}
-            wall1.remove(wall1.getElementAt(x,y));
-            totalBrickNum -= 1;
-
-        }
-        //Bottom right corner
-        if (ball1.getElementAt(xb,yb) != paddle1 &&
-                wall1.contains(xb,yb) &&
-                !wall1.contains(x,y)){  //makes sure that Top left corner has more preference over this one
-            if (previousY <= wall1.getElementAt(xb,yb).getY() &&
-                    wall1.getElementAt(xb,yb).getY() <= yb) {dY = -dY;}
-            if (previousX <= wall1.getElementAt(xb,yb).getX() &&
-                    wall1.getElementAt(xb,yb).getX() <= xb) {dX = -dX;}
-            wall1.remove(wall1.getElementAt(xb,yb));
-            totalBrickNum -= 1;
-        }
 
         //Top right corner
         //This corner has to hit the brick by itself otherwise it won't be given preference
@@ -195,6 +173,28 @@ public class BreakoutProgram extends GraphicsProgram {
             wall1.remove(wall1.getElementAt(x,yb));
             totalBrickNum -= 1;
         }
+        //Bottom right corner
+        if (ball1.getElementAt(xb,yb) != paddle1 &&
+                wall1.contains(xb,yb) &&
+                !wall1.contains(x,y)){  //makes sure that Top left corner has more preference over this one
+            if (previousY <= wall1.getElementAt(xb,yb).getY() &&
+                    wall1.getElementAt(xb,yb).getY() <= yb) {dY = -dY;}
+            if (previousX <= wall1.getElementAt(xb,yb).getX() &&
+                    wall1.getElementAt(xb,yb).getX() <= xb) {dX = -dX;}
+            wall1.remove(wall1.getElementAt(xb,yb));
+            totalBrickNum -= 1;
+        }
 
+        //Top left corner of the ball.
+        if (ball1.getElementAt(x,y) != paddle1 &&
+        wall1.contains(x,y)){
+            if (previousY >= wall1.getElementAt(x,y).getY()+20 &&
+                    wall1.getElementAt(x,y).getY()+20 >= y){dY = -dY;}
+            if (previousX >= wall1.getElementAt(x,y).getX()+60 &&
+                    wall1.getElementAt(x,y).getX()+60 >= x) {dX = -dX;}
+            wall1.remove(wall1.getElementAt(x,y));
+            totalBrickNum -= 1;
+
+        }
     }
 }
