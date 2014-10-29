@@ -101,16 +101,7 @@ public class BreakoutProgram extends GraphicsProgram {
                 if (tries>= 3){playOn = false;}
             }
             if (totalBrickNum <= 0){playOn = false;}
-
             bounceOverPaddle(obj);
-
-//            if (getElementAt(obj.getX(), obj.getY()) == paddle1 ||
-//            getElementAt(obj.getX()+Ball.BALL_DIAMETER, obj.getY()) == paddle1 ||
-//            getElementAt(obj.getX(), obj.getY()+Ball.BALL_DIAMETER) == paddle1 ||
-//            getElementAt(obj.getX()+Ball.BALL_DIAMETER, obj.getY()+Ball.BALL_DIAMETER) == paddle1)
-//            {dY = -dY;}
-
-            //deleting the bricks
             deleteBricks();
             previousX = ball1.getX();
             previousY = ball1.getY();
