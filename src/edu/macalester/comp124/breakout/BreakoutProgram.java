@@ -83,8 +83,8 @@ public class BreakoutProgram extends GraphicsProgram {
      * @param obj
      */
     public void moveBall (GCompound obj){
-        dX = 2; //rgen.nextDouble(-2, 2);
-        dY = 2; //rgen.nextDouble(0.1, 2);
+        dX = rgen.nextDouble(-2, 2);
+        dY = rgen.nextDouble(0.1, 2);
 
         while (playOn){
             obj.move(dX, dY);
