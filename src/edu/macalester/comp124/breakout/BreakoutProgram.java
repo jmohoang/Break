@@ -14,7 +14,7 @@ import java.awt.event.MouseEvent;
 public class BreakoutProgram extends GraphicsProgram {
     Paddle paddle1;
     Ball ball1;
-    Wall1 wall1;
+    Wall wall1;
     double lastX;  //last x position of where the mouse pointer is
     double dX;
     double dY;
@@ -64,7 +64,7 @@ public class BreakoutProgram extends GraphicsProgram {
         setSize(600, 700);
         paddle1 = new Paddle();
         add (paddle1, 0, 570);
-        wall1 = new Wall1();
+        wall1 = new Wall();
         add(wall1);
         init();
         ball1 = new Ball();
@@ -84,7 +84,7 @@ public class BreakoutProgram extends GraphicsProgram {
      */
     public void moveBall (GCompound obj){
         dX = rgen.nextDouble(-2, 2);
-        dY = rgen.nextDouble(0.1, 2);
+        dY = rgen.nextDouble(1, 2);
 
         while (playOn){
             obj.move(dX, dY);
